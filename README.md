@@ -2,6 +2,6 @@
 
 How to start the project:
 
-npm i
-npm run build
+npm i <br>
+npm run build <br>
 npm start:dev
