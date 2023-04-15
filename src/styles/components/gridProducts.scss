@@ -1,0 +1,56 @@
+@import '../base/variables.scss';
+
+.gridProducts {
+    display: grid;
+    grid-template-columns: repeat(4, 0.1fr);
+    row-gap: 30px;
+    column-gap: 15px;    
+    justify-content: center;
+    grid-auto-rows: minmax(20px, auto);
+
+    .navigation {
+        grid-column: span 4;
+    }
+
+    &__card {
+        border: 1px solid $color-border-card;
+        
+        &--icon {
+            position: relative;
+            z-index: 2; 
+            cursor: pointer;
+        }
+
+        &--infos {
+            display: grid;
+            gap: 20px;
+            justify-items: center;
+            padding: 0px 15px 25px 15px;
+            z-index: 1;
+            margin-top: -20px;
+            grid-auto-rows: minmax(30px, auto);
+        
+        }
+
+        &--image {
+            .product-img {
+                height: 125px;
+                width: auto;
+            }
+        }
+
+        &--description {
+            color: $font-color-detail1;
+            font-family: $font-family-normal;
+            font-size: $font-size;
+            font-weight: bold;
+        }
+
+        &--price {
+            color: $font-color-detail2;
+            font-family: $font-family-normal;
+            font-size: $font-size;
+            font-weight: bold;
+        }
+    }
+}

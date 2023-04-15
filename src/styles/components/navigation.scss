@@ -1,0 +1,9 @@
+@import '../base/variables.scss';
+
+.navigation {
+    &__text {
+        font-family: $font-family-title;
+        font-size: 1.2rem;
+        color: $font-color-normal;
+    }
+}

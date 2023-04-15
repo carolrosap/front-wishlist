@@ -1,0 +1,9 @@
+{
+  "publicUrl": "public",
+  "globals": {
+    "SystemJS": "SystemJS"
+  },
+  "externals": {
+    "SystemJS": "SystemJS"
+  }
+}

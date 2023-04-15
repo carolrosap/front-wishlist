@@ -1,0 +1,62 @@
+@import '../base/variables';
+.navbar {
+    border-radius: 0;
+    padding: 15px 30px 15px 30px;
+    background-color: $color-primary;
+    color: $font-color-contrast;
+    font-size: $font-size;
+    font-family: $font-family-normal;
+    font-weight: bold;
+    border-top: 4px solid $color-primary-strong; 
+    &__options {
+        display: grid;
+        grid-template-columns:2fr 1fr 1fr 1fr;
+        align-items: end;
+        justify-items: end;
+        margin-bottom: 10px;
+
+        &--title {
+            font-size: $font-size-title;
+            font-family: $font-family-title;
+            font-weight: normal;
+            justify-self: start;
+        }
+
+        .options-icon {
+            font-size: $font-size;
+            margin-right: 3px;
+        }
+
+        a {
+            color: $color-secondary;
+        }
+    } 
+
+    &__search {
+        display: grid;
+        align-items: end;
+        grid-template-columns: 2fr 2fr;
+
+        &--group {
+            grid-column: 2; 
+        }
+
+        &--addon {
+            background-color: $color-secondary;
+        }
+
+        &--input {
+            border-left: 0;
+            padding: 3px 8px 3px 3px;
+            font-size: $font-size;
+            box-shadow: none;
+        }
+
+        &--input:hover {
+            box-shadow: none;
+
+        }
+        
+    }
+
+}
