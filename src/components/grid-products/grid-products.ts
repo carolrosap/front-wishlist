@@ -47,7 +47,6 @@ export class GridProducts {
 
     if (container && content)
       content.removeChild(container);
-
     const wishlist = this.wishlistManager.getLocalStorage();
     if (wishlist.length)
       await this.render('wishlist')

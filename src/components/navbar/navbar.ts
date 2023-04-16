@@ -1,10 +1,7 @@
-// Importando o arquivo HTML usando import
 import template from './navbar.html';
 
-// Classe do componente
-export class Navbar {
-  // Construtor
-  constructor() {}
+ export class Navbar {
+    constructor() {}
 
   render() {
     const navbar = document.createElement('div');

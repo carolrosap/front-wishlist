@@ -1,6 +1,5 @@
 import template from './navigation.html';
 
-// Classe do componente
 export class Navigation {
   constructor() { }
 
@@ -22,7 +21,26 @@ export class Navigation {
       divGrid.appendChild(navigation);
       divContainer.appendChild(divGrid);
       root?.appendChild(divContainer);
-
     }
+
+    const url = window.location.pathname;
+    if(url === '/wishlist') {
+      this.navigationWishlist()
+      console.log(url)
+    }
+  }
+  
+  navigationWishlist() {
+    var textNavigation = document.querySelector('.navigation__text');
+    if(textNavigation != null) {
+      textNavigation.innerHTML = '';
+      const homeLink = document.createElement('a');
+      homeLink.href = '/';
+      homeLink.textContent = 'Home';
+      textNavigation?.appendChild(homeLink);
+      const textWishlist = document.createTextNode(' > Lista de desejos');
+      textNavigation?.appendChild(textWishlist);
+    }
+
   }
 }

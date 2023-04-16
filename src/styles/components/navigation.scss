@@ -5,5 +5,10 @@
         font-family: $font-family-title;
         font-size: 1.2rem;
         color: $font-color-normal;
+
+        a {
+            color: $font-color-normal;
+            text-decoration: none;
+        }
     }
 }
