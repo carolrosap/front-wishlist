@@ -2,14 +2,37 @@
 
 .gridProducts {
     display: grid;
-    grid-template-columns: repeat(4, 0.1fr);
+    grid-template-columns: repeat(3, 0.1fr);
     row-gap: 30px;
     column-gap: 15px;    
     justify-content: center;
     grid-auto-rows: minmax(20px, auto);
 
+    @media only screen and (min-width: $large-screen) {
+        grid-template-columns: repeat(4, 0.1fr);
+    }
+    @media only screen and (max-width: $small-screen) {
+        grid-template-columns: repeat(2, 0.1fr);
+    }
+
+    @media only screen and (max-width: $small-screen3) {
+        grid-template-columns: 0.1fr;
+    }
+
     .navigation {
-        grid-column: span 4;
+        grid-column: span 3;
+        @media only screen and (min-width: $large-screen) {
+            grid-column: span 4;
+        }
+
+        @media only screen and (max-width: $small-screen) {
+            grid-column: span 2;
+        }
+
+        @media only screen and (max-width: $small-screen3) {
+            grid-column: span 1;
+        }
+    
     }
 
     &__card {
