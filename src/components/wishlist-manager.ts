@@ -41,10 +41,8 @@ export class WishlistManager {
 
     removeProductWishlist(id: any) {
         const wishlist = this.getLocalStorage();
-        console.log(wishlist)
         const newWishlist = wishlist.filter((item: string | null) => item !== id.toString());
         const jsonWishlist = JSON.stringify(newWishlist);
-        console.log(jsonWishlist);
         localStorage.setItem(this.key, jsonWishlist);
     }
 
