@@ -2,14 +2,27 @@ import template from './navigation.html';
 
 // Classe do componente
 export class Navigation {
-  constructor() {}
+  constructor() { }
 
-  render(divClass: string) {
+  render(className: string) {
     const navigation = document.createElement('div');
-    navigation.classList.add('navigation'); 
+    navigation.classList.add('navigation');
     navigation.insertAdjacentHTML('beforeend', template);
-    var divContent = document.querySelector('.' + divClass);
-    if(divContent!=null)
+    var divContent = document.querySelector('.' + className);
+    if (divContent != null)
       divContent.appendChild(navigation);
+    else {
+      var root = document.querySelector('#content');
+      const divContainer = document.createElement('div');
+      const divGrid = document.createElement('div');
+
+      divContainer.classList.add(className);
+      divGrid.classList.add('gridProducts')
+
+      divGrid.appendChild(navigation);
+      divContainer.appendChild(divGrid);
+      root?.appendChild(divContainer);
+
+    }
   }
 }

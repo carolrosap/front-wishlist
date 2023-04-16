@@ -1,9 +1,6 @@
 import { GridProducts } from "./components/grid-products/grid-products";
 import { Navbar } from "./components/navbar/navbar";
-import { RouterTwo } from "./router2";
 import { Router } from "./router";
-
-
 
 import './styles/index.scss'; 
 
@@ -14,7 +11,7 @@ import './styles/index.scss';
 // const gridComponents = new GridProducts(); 
 // gridComponents.render(); 
 
-const router = new RouterTwo();
+const router = new Router();
 router.configureRoutes(); // Navegar para a página inicial
 
 

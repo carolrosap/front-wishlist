@@ -1,52 +1,46 @@
+// src/routes.ts
+type RouteHandler = () => void;
+
+// Tipo do objeto de rotas
+type RouteMap = {
+    [url: string]: RouteHandler;
+};
 import { GridProducts } from "./components/grid-products/grid-products";
 import { Navbar } from "./components/navbar/navbar";
 
+
 export class Router {
-    private routes: Map<string, () => void> = new Map();
 
-    constructor() {
-        this.routes.set('/', this.showHome);
-        this.routes.set('/wishlist', this.showWishlist);
-        window.addEventListener('popstate', this.handlePopstate.bind(this));
-    }
-
-    private handlePopstate(event: PopStateEvent) {
-        // Quando o evento de popstate é acionado, atualize a URL e mostre o componente correspondente
-        const url = window.location.pathname;
-        this.navigate(url);
-    }
-
-    public navigate(url: string) {
-        // Atualize a URL do navegador
-        window.history.pushState(null, '', url);
-
-        // Encontre o componente correspondente com base na URL
-        const routeHandler = this.routes.get(url);
-        if (routeHandler) {
-            // Limpe o conteúdo atual do DOM
-            const root = document.getElementById('content');
-            if (root) {
-                root.innerHTML = '';
-
-                // Renderize o componente correspondente e adicione-o ao DOM
-                routeHandler();
-            }
-        }
-    }
-
-    private showHome() {
-        // Lógica para mostrar o componente da página inicial
+    public handleHomeRoute(): void {
+        console.log('Rota / foi acessada!');
         const navbar = new Navbar();
         navbar.render();
 
         const gridComponents = new GridProducts();
-        gridComponents.render();
+        gridComponents.render('home');
     }
 
-    private showWishlist() {
-        // Lógica para mostrar o componente da página de detalhes
+    public handleWishlistRoute(): void {
+        console.log('Rota /wishlist foi acessada!');
         const navbar = new Navbar();
         navbar.render();
+        const gridComponents = new GridProducts();
+        gridComponents.render('wishlist');
+    }
+
+    public configureRoutes(): void {
+        // Mapeia as rotas e suas respectivas funções de manipulação
+        const routes: RouteMap = {
+            '/': this.handleHomeRoute,
+            '/wishlist': this.handleWishlistRoute
+        };
+
+        // Verifica a URL atual e chama a função de manipulação de rota apropriada
+        const currentUrl = window.location.pathname;
+        const routeHandler = routes[currentUrl];
+        if (routeHandler) {
+            routeHandler();
+        }
     }
 }
 

@@ -12,19 +12,19 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.html$/, // Aplica a regra a arquivos com extensão .html
+                test: /\.html$/,
                 use: [
                   {
-                    loader: 'raw-loader', // Utiliza o raw-loader
+                    loader: 'raw-loader',
                   },
                 ]
             },
             {
-                test: /\.scss$/, // Use expressão regular para identificar arquivos SCSS
+                test: /\.scss$/,
                 use: [
-                  'style-loader', // Adicione o estilo ao DOM como <style> tag
-                  'css-loader', // Carregue o CSS em JavaScript
-                  'sass-loader' // Compile o SCSS em CSS
+                  'style-loader',
+                  'css-loader',
+                  'sass-loader'
                 ]
             },
             {
@@ -50,10 +50,11 @@ module.exports = {
     ],
     devServer: {
         static: {
-            directory: path.resolve(__dirname, 'public'), // Caminho para a pasta de arquivos estáticos
+            directory: path.resolve(__dirname, 'public'),
         },
         compress: true,
         port: 9000,
+        historyApiFallback: true,
     },
     optimization: {
         minimize: true,
