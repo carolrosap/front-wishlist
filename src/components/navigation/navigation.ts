@@ -26,7 +26,6 @@ export class Navigation {
     const url = window.location.pathname;
     if(url === '/wishlist') {
       this.navigationWishlist()
-      console.log(url)
     }
   }
   
