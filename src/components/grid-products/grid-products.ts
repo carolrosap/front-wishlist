@@ -1,74 +1,71 @@
 import { Navigation } from '../navigation/navigation';
 import template from './grid-products.html';
-import axios from "axios";
-import { WishlistManager } from "../wishlist-manager";
+import axios from 'axios';
+import { WishlistManager } from '../wishlist-manager';
 
 export class GridProducts {
   public wishlistManager = new WishlistManager();
-  constructor() { }
-
-  public async getProductsApi() {
+  
+  public async getProductsApi (): Promise<any> {
     try {
-      const response = await axios.get('https://run.mocky.io/v3/66063904-d43c-49ed-9329-d69ad44b885e')
-      const products = response.data.products
-      return products
+      const response = await axios.get('https://run.mocky.io/v3/66063904-d43c-49ed-9329-d69ad44b885e');
+      const products = response.data.products;
+      return products;
     } catch (error) {
-      console.log('error reading data from API')
+      console.log('error reading data from API');
     }
   }
 
-  public async getProductsWishList() {
-    var productsApi = await this.getProductsApi()
-    var listId = this.wishlistManager.getLocalStorage()
+  public async getProductsWishList (): Promise<any> {
+    const productsApi = await this.getProductsApi();
+    const listId = this.wishlistManager.getLocalStorage();
     const wishlistProducts = productsApi.filter((product: any) => listId.includes(product.id.toString()));
     return wishlistProducts;
-
   }
 
-  async render(page: string) {
-
+  async render (page: string): Promise<void> {
     const element = document.createElement('div');
     element.classList.add('container-fluid');
     element.insertAdjacentHTML('beforeend', template);
 
-    var content = document.querySelector('#content');
+    const content = document.querySelector('#content');
     content?.appendChild(element);
 
     const navigation = new Navigation();
     navigation.render('gridProducts');
 
-    await this.showGrid(page)
+    await this.showGrid(page);
   }
 
-  async renderAfterExclude() {
-    var container = document.querySelector('.container-fluid');
-    var content = document.querySelector('#content');
+  async renderAfterExclude (): Promise<void> {
+    const container = document.querySelector('.container-fluid');
+    const content = document.querySelector('#content');
 
-    if (container && content)
+    if ((container != null) && (content != null)) {
       content.removeChild(container);
+    }
     const wishlist = this.wishlistManager.getLocalStorage();
-    if (wishlist.length)
-      await this.render('wishlist')
-    else {
+    if (wishlist.length > 0) {
+      await this.render('wishlist');
+    } else {
       const navigation = new Navigation();
       navigation.render('container-fluid');
     }
-
   }
 
-  public async showGrid(page: string) {
-    var products: any
+  public async showGrid (page: string): Promise<void> {
+    let products: any;
     if (page === 'home') {
-      products = await this.getProductsApi()
+      products = await this.getProductsApi();
     } else if (page === 'wishlist') {
-      products = await this.getProductsWishList()
+      products = await this.getProductsWishList();
     }
 
     await this.showCards(products, page);
   }
 
-  public async showCards(products: any, page: string) {
-    var gridProducts = document.querySelector('.gridProducts');
+  public async showCards (products: any, page: string): Promise<void> {
+    const gridProducts = document.querySelector('.gridProducts');
     products.forEach((item: any) => {
       const card = document.createElement('div');
       const favorite = document.createElement('div');
@@ -79,7 +76,6 @@ export class GridProducts {
       const img = document.createElement('img');
       const description = document.createElement('div');
       const price = document.createElement('div');
-
 
       card.classList.add('gridProducts__card');
       favorite.classList.add('gridProducts__card--favorite');
@@ -94,14 +90,26 @@ export class GridProducts {
         icon.src = this.wishlistManager.validateFavIcon(item.id);
 
         favorite.appendChild(icon);
-        favorite.addEventListener('click', (event) => this.wishlistManager.clickWishlist(favorite));
-
+        favorite.addEventListener('click', (event) => {
+          this.wishlistManager.clickWishlist(favorite);
+        });
       } else {
         infos.classList.add('wishList');
         favorite.classList.add('removeIcon');
         icon.src = 'assets/icons/x-circle.svg';
         favorite.appendChild(icon);
-        favorite.addEventListener('click', (event) => this.wishlistManager.clickRemoveWishlist(item.id));
+        // favorite.addEventListener('click', async (event) => {
+        //   await this.wishlistManager.clickRemoveWishlist(item.id);
+        // });
+        favorite.addEventListener('click', (event) => {
+          void (async () => {
+            try {
+              await this.wishlistManager.clickRemoveWishlist(item.id);
+            } catch (error) {
+              console.error('Error while removing item from the wishlist:', error);
+            }
+          })();
+        });
       }
 
       divImage.classList.add('gridProducts__card--image');
@@ -128,11 +136,6 @@ export class GridProducts {
       card.appendChild(infos);
 
       gridProducts?.appendChild(card);
-
     });
   }
-
-
-
-
 }

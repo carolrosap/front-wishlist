@@ -1,5 +1,5 @@
 declare module '*.html' {
-    const grid: string;
-    export default grid;
+  const grid: string;
+  export default grid;
 }
   

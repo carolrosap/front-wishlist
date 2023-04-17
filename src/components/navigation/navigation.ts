@@ -1,22 +1,20 @@
 import template from './navigation.html';
 
 export class Navigation {
-  constructor() { }
-
-  render(className: string) {
+  public render (className: string): void {
     const navigation = document.createElement('div');
     navigation.classList.add('navigation');
     navigation.insertAdjacentHTML('beforeend', template);
-    var divContent = document.querySelector('.' + className);
-    if (divContent != null)
+    const divContent = document.querySelector('.' + className);
+    if (divContent != null) {
       divContent.appendChild(navigation);
-    else {
-      var root = document.querySelector('#content');
+    } else {
+      const root = document.querySelector('#content');
       const divContainer = document.createElement('div');
       const divGrid = document.createElement('div');
 
       divContainer.classList.add(className);
-      divGrid.classList.add('gridProducts')
+      divGrid.classList.add('gridProducts');
 
       divGrid.appendChild(navigation);
       divContainer.appendChild(divGrid);
@@ -24,14 +22,14 @@ export class Navigation {
     }
 
     const url = window.location.pathname;
-    if(url === '/wishlist') {
-      this.navigationWishlist()
+    if (url === '/wishlist') {
+      this.navigationWishlist();
     }
   }
   
-  navigationWishlist() {
-    var textNavigation = document.querySelector('.navigation__text');
-    if(textNavigation != null) {
+  public navigationWishlist (): void {
+    const textNavigation = document.querySelector('.navigation__text');
+    if (textNavigation != null) {
       textNavigation.innerHTML = '';
       const homeLink = document.createElement('a');
       homeLink.href = '/';
@@ -40,6 +38,5 @@ export class Navigation {
       const textWishlist = document.createTextNode(' > Lista de desejos');
       textNavigation?.appendChild(textWishlist);
     }
-
   }
 }
