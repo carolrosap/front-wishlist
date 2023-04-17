@@ -3,7 +3,7 @@ import { WishlistManager } from './wishlist-manager';
 describe('Wishlist Manager Tests', () => {
   let wishlistManager: WishlistManager;
 
-    beforeEach(() => {
+  beforeEach(() => {
     wishlistManager = new WishlistManager();
   });
 
