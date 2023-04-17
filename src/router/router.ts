@@ -1,5 +1,5 @@
-import { GridProducts } from './components/grid-products/grid-products';
-import { Navbar } from './components/navbar/navbar';
+import { GridProducts } from '../components/grid-products/grid-products';
+import { Navbar } from '../components/navbar/navbar';
 
 type RouteHandler = () => void;
 type RouteMap = Record<string, RouteHandler>;

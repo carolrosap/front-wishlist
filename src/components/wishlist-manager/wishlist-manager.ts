@@ -1,4 +1,4 @@
-import { GridProducts } from './grid-products/grid-products';
+import { GridProducts } from '../grid-products/grid-products';
 
 export class WishlistManager {
   public arrayCards: HTMLElement[];

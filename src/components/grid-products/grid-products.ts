@@ -1,7 +1,7 @@
 import { Navigation } from '../navigation/navigation';
 import template from './grid-products.html';
 import axios from 'axios';
-import { WishlistManager } from '../wishlist-manager';
+import { WishlistManager } from '../wishlist-manager/wishlist-manager';
 
 export class GridProducts {
   public wishlistManager = new WishlistManager();
