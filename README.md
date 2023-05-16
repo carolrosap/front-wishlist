@@ -4,7 +4,7 @@
 
 npm i <br>
 npm run build <br>
-npm start:dev <br>
+npm start <br>
 
 or: <br>
 
